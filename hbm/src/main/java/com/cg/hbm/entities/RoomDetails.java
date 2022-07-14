@@ -11,9 +11,11 @@ public class RoomDetails {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private int room_id;
+
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
+
     private String room_no;
     private String room_type;
     private double rate_per_day;
