@@ -3,6 +3,8 @@ package com.cg.hbm.entities;
 import javax.persistence.*;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -11,37 +13,39 @@ public class BookingDetails {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private int booking_id;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "hotel_id")
-    private Hotel hotel;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "room_id")
-    private RoomDetails roomDetails;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private UserDetails user;
-
     private Date booked_from;
     private Date booked_to;
     private int no_of_adults;
     private int no_of_children;
     private double amount;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "hotel_id")
+    private Hotel hotel;
+
+    @OneToMany(mappedBy = "bookingDetails")
+    private List<RoomDetails> roomDetails = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserDetails user;
+
+    @OneToMany(mappedBy = "bookingDetails")
+    private List<Payments> payments = new ArrayList<>();
+
     public BookingDetails() {
     }
 
-    public BookingDetails(Hotel hotel, RoomDetails roomDetails, UserDetails user, Date booked_from, Date booked_to, int no_of_adults, int no_of_children, double amount) {
-        this.hotel = hotel;
-        this.roomDetails = roomDetails;
-        this.user = user;
+    public BookingDetails(Date booked_from, Date booked_to, int no_of_adults, int no_of_children, double amount, Hotel hotel, List<RoomDetails> roomDetails, UserDetails user, List<Payments> payments) {
         this.booked_from = booked_from;
         this.booked_to = booked_to;
         this.no_of_adults = no_of_adults;
         this.no_of_children = no_of_children;
         this.amount = amount;
+        this.hotel = hotel;
+        this.roomDetails = roomDetails;
+        this.user = user;
+        this.payments = payments;
     }
 
     public int getBooking_id() {
@@ -50,30 +54,6 @@ public class BookingDetails {
 
     public void setBooking_id(int booking_id) {
         this.booking_id = booking_id;
-    }
-
-    public Hotel getHotel() {
-        return hotel;
-    }
-
-    public void setHotel(Hotel hotel) {
-        this.hotel = hotel;
-    }
-
-    public RoomDetails getRoomDetails() {
-        return roomDetails;
-    }
-
-    public void setRoomDetails(RoomDetails roomDetails) {
-        this.roomDetails = roomDetails;
-    }
-
-    public UserDetails getUser() {
-        return user;
-    }
-
-    public void setUser(UserDetails user) {
-        this.user = user;
     }
 
     public Date getBooked_from() {
@@ -114,5 +94,37 @@ public class BookingDetails {
 
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    public Hotel getHotel() {
+        return hotel;
+    }
+
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
+    }
+
+    public List<RoomDetails> getRoomDetails() {
+        return roomDetails;
+    }
+
+    public void setRoomDetails(List<RoomDetails> roomDetails) {
+        this.roomDetails = roomDetails;
+    }
+
+    public UserDetails getUser() {
+        return user;
+    }
+
+    public void setUser(UserDetails user) {
+        this.user = user;
+    }
+
+    public List<Payments> getPayments() {
+        return payments;
+    }
+
+    public void setPayments(List<Payments> payments) {
+        this.payments = payments;
     }
 }

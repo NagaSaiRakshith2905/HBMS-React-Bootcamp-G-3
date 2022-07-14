@@ -13,6 +13,7 @@ public class Transactions {
     private int transaction_id;
     private double amount;
 
+
     public Transactions() {
     }
 

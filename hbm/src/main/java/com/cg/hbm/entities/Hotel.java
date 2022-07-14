@@ -1,8 +1,9 @@
 package com.cg.hbm.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -21,10 +22,10 @@ public class Hotel {
     private String phone2;
     private String website;
 
-    public Hotel() {
-    }
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "hotel",cascade = CascadeType.ALL)
+    private List<RoomDetails> roomDetailsList = new ArrayList<>();
 
-    public Hotel(String city, String hotel_name, String address, String description, double avg_rate_per_day, String email, String phone1, String phone2, String website) {
+    public Hotel(String city, String hotel_name, String address, String description, double avg_rate_per_day, String email, String phone1, String phone2, String website, List<RoomDetails> roomDetailsList) {
         this.city = city;
         this.hotel_name = hotel_name;
         this.address = address;
@@ -34,6 +35,7 @@ public class Hotel {
         this.phone1 = phone1;
         this.phone2 = phone2;
         this.website = website;
+        this.roomDetailsList = roomDetailsList;
     }
 
     public int getHotel_id() {
@@ -114,5 +116,13 @@ public class Hotel {
 
     public void setWebsite(String website) {
         this.website = website;
+    }
+
+    public List<RoomDetails> getRoomDetailsList() {
+        return roomDetailsList;
+    }
+
+    public void setRoomDetailsList(List<RoomDetails> roomDetailsList) {
+        this.roomDetailsList = roomDetailsList;
     }
 }

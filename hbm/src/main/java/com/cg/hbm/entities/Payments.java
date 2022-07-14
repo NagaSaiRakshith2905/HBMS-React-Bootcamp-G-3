@@ -10,7 +10,7 @@ public class Payments {
     @GeneratedValue(strategy = IDENTITY)
     private int payment_id;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="booking_id")
     private BookingDetails bookingDetails;
 

@@ -3,6 +3,10 @@ package com.cg.hbm.entities;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -18,16 +22,20 @@ public class UserDetails {
     private String mobile;
     private String address;
 
+    @OneToMany(mappedBy = "user")
+    private List<BookingDetails> bookingDetails = new ArrayList<>();
+
     public UserDetails() {
     }
 
-    public UserDetails(String user_name, String email, String password, String mobile, String address) {
+    public UserDetails(String user_name, String email, String password, String role, String mobile, String address, List<BookingDetails> bookingDetails) {
         this.user_name = user_name;
         this.email = email;
         this.password = password;
-        this.role = "user";
+        this.role = role;
         this.mobile = mobile;
         this.address = address;
+        this.bookingDetails = bookingDetails;
     }
 
     public int getUser_id() {
@@ -84,5 +92,13 @@ public class UserDetails {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public List<BookingDetails> getBookingDetails() {
+        return bookingDetails;
+    }
+
+    public void setBookingDetails(List<BookingDetails> bookingDetails) {
+        this.bookingDetails = bookingDetails;
     }
 }

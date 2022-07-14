@@ -12,7 +12,7 @@ public class RoomDetails {
     @GeneratedValue(strategy = IDENTITY)
     private int room_id;
 
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
@@ -20,17 +20,23 @@ public class RoomDetails {
     private String room_type;
     private double rate_per_day;
     private boolean isAvailable;
-//    private Blob photo;
+    private String photo;
+
+    @ManyToOne
+    @JoinColumn(name = "booking_id")
+    private BookingDetails bookingDetails;
 
     public RoomDetails() {
     }
 
-    public RoomDetails(Hotel hotel, String room_no, String room_type, double rate_per_day, boolean isAvailable) {
+    public RoomDetails(Hotel hotel, String room_no, String room_type, double rate_per_day, boolean isAvailable, String photo, BookingDetails bookingDetails) {
         this.hotel = hotel;
         this.room_no = room_no;
         this.room_type = room_type;
         this.rate_per_day = rate_per_day;
         this.isAvailable = isAvailable;
+        this.photo = photo;
+        this.bookingDetails = bookingDetails;
     }
 
     public int getRoom_id() {
@@ -79,5 +85,21 @@ public class RoomDetails {
 
     public void setAvailable(boolean available) {
         isAvailable = available;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public BookingDetails getBookingDetails() {
+        return bookingDetails;
+    }
+
+    public void setBookingDetails(BookingDetails bookingDetails) {
+        this.bookingDetails = bookingDetails;
     }
 }
