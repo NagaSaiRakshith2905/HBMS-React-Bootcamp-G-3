@@ -38,6 +38,10 @@ public class Hotel {
         this.roomDetailsList = roomDetailsList;
     }
 
+    public Hotel() {
+
+    }
+
     public int getHotel_id() {
         return hotel_id;
     }
