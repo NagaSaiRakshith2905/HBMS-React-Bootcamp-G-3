@@ -1,4 +1,4 @@
-package com.cg.hbm.service;
+package com.cg.hbm.service.interfaces;
 
 import com.cg.hbm.entities.Hotel;
 
