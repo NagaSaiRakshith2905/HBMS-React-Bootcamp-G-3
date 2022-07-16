@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import java.sql.DatabaseMetaData;
+import java.sql.Date;
+
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
@@ -12,6 +15,7 @@ public class Transactions {
     @GeneratedValue(strategy = IDENTITY)
     private int transaction_id;
     private double amount;
+    private String transaction_date;
 
 
     public Transactions() {
@@ -19,6 +23,15 @@ public class Transactions {
 
     public Transactions(double amount) {
         this.amount = amount;
+
+    }
+
+    public String getTransaction_date() {
+        return transaction_date;
+    }
+
+    public void setTransaction_date(String transaction_date) {
+        this.transaction_date = transaction_date;
     }
 
     public int getTransaction_id() {
