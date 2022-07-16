@@ -1,6 +1,6 @@
 package com.cg.hbm.service.classes;
 
-import com.cg.hbm.entities.UserDetails;
+import com.cg.hbm.entities.User;
 import com.cg.hbm.service.interfaces.IUserService;
 import org.springframework.stereotype.Service;
 
@@ -11,27 +11,27 @@ import java.util.List;
 @Transactional
 public class UserService implements IUserService {
     @Override
-    public UserDetails addUser(UserDetails user) {
+    public User addUser(User user) {
         return null;
     }
 
     @Override
-    public UserDetails updateUser(UserDetails user) {
+    public User updateUser(User user) {
         return null;
     }
 
     @Override
-    public UserDetails removeUser(UserDetails user) {
+    public User removeUser(User user) {
         return null;
     }
 
     @Override
-    public List<UserDetails> showAllUsers() {
+    public List<User> showAllUsers() {
         return null;
     }
 
     @Override
-    public UserDetails showUser(UserDetails user) {
+    public User showUser(User user) {
         return null;
     }
 }
