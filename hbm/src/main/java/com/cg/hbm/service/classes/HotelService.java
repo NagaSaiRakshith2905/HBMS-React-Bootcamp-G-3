@@ -14,34 +14,35 @@ import java.util.Optional;
 @Transactional
 public class HotelService implements IHotelService {
 
-    private HotelRepository repository;
+    @Autowired private HotelRepository hotelRepository;
 
-    @Autowired
-    public HotelService(HotelRepository repository) {
-        this.repository = repository;
-    }
     @Override
     public Hotel addHotel(Hotel hotel) {
-        return repository.save(hotel);
+        return hotelRepository.save(hotel);
     }
     @Override
     public Hotel updateHotel(Hotel hotel) {
-        return null;
+        Optional<Hotel> optionalHotel = hotelRepository.findById(hotel.getHotel_id());
+        if(optionalHotel.isEmpty())
+            throw new IllegalStateException("Hotel with id:"+ hotel.getHotel_id()+" not found ");
+        return hotelRepository.save(hotel);
     }
     @Override
     public void removeHotel(int id) {
-        repository.deleteById(id);
+        Optional<Hotel> optionalHotel = hotelRepository.findById(id);
+        if(optionalHotel.isEmpty())
+            throw new IllegalStateException("Hotel with id:"+ id+" not found ");
+        hotelRepository.deleteById(id);
     }
     @Override
     public List<Hotel> showAllHotels() {
-        return repository.findAll();
+        return hotelRepository.findAll();
     }
     @Override
     public Hotel showHotel(int id) {
-        Optional<Hotel> hotel = repository.findById(id);
-        if (hotel.isPresent())
-            return hotel.get();
-        else
-            throw new IllegalStateException("hotel does not exist");
+        Optional<Hotel> optionalHotel = hotelRepository.findById(id);
+        if(optionalHotel.isEmpty())
+            throw new IllegalStateException("Hotel with id:"+ id+" not found ");
+        return optionalHotel.get();
     }
 }

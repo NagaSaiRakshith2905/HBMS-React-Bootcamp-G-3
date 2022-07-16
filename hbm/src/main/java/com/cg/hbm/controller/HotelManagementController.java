@@ -4,18 +4,16 @@ import com.cg.hbm.entities.Hotel;
 import com.cg.hbm.service.classes.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/hotel/")
 public class HotelManagementController {
 
+    @Autowired
     private HotelService hotelService;
 
-    @Autowired
-    public HotelManagementController(HotelService hotelService) {
-        this.hotelService = hotelService;
-    }
     @PostMapping("add_hotel/")
     public Hotel addHotel(@RequestBody Hotel hotel) {
         return hotelService.addHotel(hotel);

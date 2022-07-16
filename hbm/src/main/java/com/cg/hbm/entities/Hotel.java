@@ -25,6 +25,18 @@ public class Hotel {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "hotel", cascade = CascadeType.ALL)
     private List<RoomDetails> roomDetailsList = new ArrayList<>();
 
+    public Hotel(String city, String hotel_name, String address, String description, double avg_rate_per_day, String email, String phone1, String phone2, String website) {
+        this.city = city;
+        this.hotel_name = hotel_name;
+        this.address = address;
+        this.description = description;
+        this.avg_rate_per_day = avg_rate_per_day;
+        this.email = email;
+        this.phone1 = phone1;
+        this.phone2 = phone2;
+        this.website = website;
+    }
+
     public Hotel(String city, String hotel_name, String address, String description, double avg_rate_per_day, String email, String phone1, String phone2, String website, List<RoomDetails> roomDetailsList) {
         this.city = city;
         this.hotel_name = hotel_name;

@@ -23,12 +23,12 @@ public class BookingDetails {
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
-    @OneToMany(mappedBy = "bookingDetails")
+    @OneToMany(mappedBy = "bookingDetails",cascade = CascadeType.ALL)
     private List<RoomDetails> roomDetails = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private UserDetails user;
+    private User user;
 
     @OneToMany(mappedBy = "bookingDetails")
     private List<Payments> payments = new ArrayList<>();
@@ -36,7 +36,7 @@ public class BookingDetails {
     public BookingDetails() {
     }
 
-    public BookingDetails(Date booked_from, Date booked_to, int no_of_adults, int no_of_children, double amount, Hotel hotel, List<RoomDetails> roomDetails, UserDetails user, List<Payments> payments) {
+    public BookingDetails(Date booked_from, Date booked_to, int no_of_adults, int no_of_children, double amount, Hotel hotel, List<RoomDetails> roomDetails, User user, List<Payments> payments) {
         this.booked_from = booked_from;
         this.booked_to = booked_to;
         this.no_of_adults = no_of_adults;
@@ -112,11 +112,11 @@ public class BookingDetails {
         this.roomDetails = roomDetails;
     }
 
-    public UserDetails getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(UserDetails user) {
+    public void setUser(User user) {
         this.user = user;
     }
 

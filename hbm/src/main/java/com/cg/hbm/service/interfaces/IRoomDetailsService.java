@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface IRoomDetailsService {
     public RoomDetails addRoomDetails(RoomDetailsPojo roomDetails);
-    public RoomDetails updateRoomDetails(RoomDetails roomDetails);
-    public RoomDetails removeRoomDetails(RoomDetails roomDetails);
+    public RoomDetails updateRoomDetails(RoomDetailsPojo roomDetailsPojo);
+    public void removeRoomDetails(int roomDetails_id);
     public List<RoomDetails> showAllRoomDetails();
     public RoomDetails showRoomDetails(int roomDetails_id);
 }
