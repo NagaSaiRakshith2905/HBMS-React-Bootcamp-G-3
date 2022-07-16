@@ -8,8 +8,8 @@ import java.util.List;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Table(name = "user_details")
-public class User {
+
+public class UserDetails {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private int user_id;
@@ -23,10 +23,10 @@ public class User {
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<BookingDetails> bookingDetails = new ArrayList<>();
 
-    public User() {
+    public UserDetails() {
     }
 
-    public User(String user_name, String email, String password, String role, String mobile, String address, List<BookingDetails> bookingDetails) {
+    public UserDetails(String user_name, String email, String password, String role, String mobile, String address, List<BookingDetails> bookingDetails) {
         this.user_name = user_name;
         this.email = email;
         this.password = password;

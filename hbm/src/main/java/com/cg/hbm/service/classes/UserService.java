@@ -1,6 +1,7 @@
 package com.cg.hbm.service.classes;
 
-import com.cg.hbm.entities.User;
+
+import com.cg.hbm.entities.UserDetails;
 import com.cg.hbm.repository.UserRepository;
 import com.cg.hbm.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,16 +17,34 @@ public class UserService implements IUserService {
 
     @Autowired
     private UserRepository userRepository;
+
+
     @Override
-    public User addUser(User user) {
+    public UserDetails loginUser(String Username, String Password) {
+
+        UserDetails user = userRepository.findUser(Username);
+        Optional<UserDetails> userName = Optional.of(user);
+        if (userName.isPresent()){
+            if(userName.get().getPassword().equals(Password)){
+                return userName.get();
+            }
+            else
+                throw new IllegalStateException("Please check username and password");
+        }
+        else
+            throw new IllegalStateException("User doesn't exists");
+    }
+
+    @Override
+    public UserDetails addUser(UserDetails user) {
 
         return userRepository.save(user);
     }
 
     @Override
-    public User updateUser(User user) {
+    public UserDetails updateUser(UserDetails user) {
 
-        Optional<User> optionalUser = userRepository.findById(user.getUser_id());
+        Optional<UserDetails> optionalUser = userRepository.findById(user.getUser_id());
         if(optionalUser.isEmpty())
             throw new IllegalStateException("User with id:"+ user.getUser_id()+" not found ");
         return userRepository.save(user);
@@ -34,7 +53,7 @@ public class UserService implements IUserService {
     @Override
     public void removeUser(int id) {
 
-        Optional<User> optionalUser = userRepository.findById(id);
+        Optional<UserDetails> optionalUser = userRepository.findById(id);
         if(optionalUser.isEmpty())
             throw new IllegalStateException("User with id:"+ id+" not found ");
         userRepository.deleteById(id);
@@ -42,15 +61,15 @@ public class UserService implements IUserService {
 
 
     @Override
-    public List<User> showAllUsers() {
+    public List<UserDetails> showAllUsers() {
 
         return userRepository.findAll();
     }
 
     @Override
-    public User showUser(int id) {
+    public UserDetails showUser(int id) {
 
-        Optional<User> optionalUser = userRepository.findById(id);
+        Optional<UserDetails> optionalUser = userRepository.findById(id);
         if(optionalUser.isEmpty())
             throw new IllegalStateException("User with id:"+ id+" not found ");
         return optionalUser.get();

@@ -1,7 +1,10 @@
 package com.cg.hbm.repository;
 
-import com.cg.hbm.entities.User;
+import com.cg.hbm.entities.UserDetails;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
-public interface UserRepository extends JpaRepository<User,Integer> {
+public interface UserRepository extends JpaRepository<UserDetails,Integer> {
+    @Query("select a from UserDetails a where user_name=?1")
+    UserDetails findUser(String name);
 }

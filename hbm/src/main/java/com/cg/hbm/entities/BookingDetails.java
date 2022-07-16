@@ -33,7 +33,7 @@ public class BookingDetails {
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private UserDetails user;
 
     @JsonIgnore
     @OneToMany(mappedBy = "bookingDetails",cascade = CascadeType.ALL)
@@ -42,7 +42,7 @@ public class BookingDetails {
     public BookingDetails() {
     }
 
-    public BookingDetails(Date booked_from, Date booked_to, int no_of_adults, int no_of_children, double amount, Hotel hotel, List<RoomDetails> roomDetails, User user, List<Payments> payments) {
+    public BookingDetails(Date booked_from, Date booked_to, int no_of_adults, int no_of_children, double amount, Hotel hotel, List<RoomDetails> roomDetails, UserDetails user, List<Payments> payments) {
         this.booked_from = booked_from;
         this.booked_to = booked_to;
         this.no_of_adults = no_of_adults;
@@ -118,11 +118,11 @@ public class BookingDetails {
         this.roomDetails = roomDetails;
     }
 
-    public User getUser() {
+    public UserDetails getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserDetails user) {
         this.user = user;
     }
 

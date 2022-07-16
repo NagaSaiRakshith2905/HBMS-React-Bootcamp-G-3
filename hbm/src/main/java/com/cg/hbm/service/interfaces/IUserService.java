@@ -1,16 +1,20 @@
 package com.cg.hbm.service.interfaces;
 
-import com.cg.hbm.entities.User;
+import com.cg.hbm.entities.UserDetails;
 
 import java.util.List;
 
 public interface IUserService {
-    public User addUser(User user);
-    public User updateUser(User user);
+
+    public UserDetails loginUser(String Username, String Password);
+
+    public UserDetails addUser(UserDetails user);
+
+    public UserDetails updateUser(UserDetails user);
 
     public void removeUser(int id);
 
-    public List<User> showAllUsers();
+    public List<UserDetails> showAllUsers();
 
-    public User showUser(int id);
+    public UserDetails showUser(int id);
 }
