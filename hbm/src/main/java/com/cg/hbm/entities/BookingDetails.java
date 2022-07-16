@@ -1,5 +1,7 @@
 package com.cg.hbm.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 import java.sql.Date;
@@ -19,18 +21,22 @@ public class BookingDetails {
     private int no_of_children;
     private double amount;
 
+    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "bookingDetails",cascade = CascadeType.ALL)
     private List<RoomDetails> roomDetails = new ArrayList<>();
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "bookingDetails")
+    @JsonIgnore
+    @OneToMany(mappedBy = "bookingDetails",cascade = CascadeType.ALL)
     private List<Payments> payments = new ArrayList<>();
 
     public BookingDetails() {
