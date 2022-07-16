@@ -22,7 +22,7 @@ public class Hotel {
     private String phone2;
     private String website;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "hotel",cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "hotel", cascade = CascadeType.ALL)
     private List<RoomDetails> roomDetailsList = new ArrayList<>();
 
     public Hotel(String city, String hotel_name, String address, String description, double avg_rate_per_day, String email, String phone1, String phone2, String website, List<RoomDetails> roomDetailsList) {

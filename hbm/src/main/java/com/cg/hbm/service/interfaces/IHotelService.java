@@ -7,7 +7,7 @@ import java.util.List;
 public interface IHotelService {
     public Hotel addHotel(Hotel hotel);
     public Hotel updateHotel(Hotel hotel);
-    public Hotel removeHotel(Hotel hotel);
+    public void removeHotel(int id);
     public List<Hotel> showAllHotels();
-    public Hotel showHotel(Hotel id);
+    public Hotel showHotel(int id);
 }

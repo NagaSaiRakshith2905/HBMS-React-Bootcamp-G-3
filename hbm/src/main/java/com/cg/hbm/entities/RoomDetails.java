@@ -1,5 +1,7 @@
 package com.cg.hbm.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 import java.sql.Blob;
@@ -11,17 +13,18 @@ public class RoomDetails {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private int room_id;
-
-    @ManyToOne
-    @JoinColumn(name = "hotel_id")
-    private Hotel hotel;
-
     private String room_no;
     private String room_type;
     private double rate_per_day;
     private boolean isAvailable;
     private String photo;
 
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "hotel_id")
+    private Hotel hotel;
+
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "booking_id")
     private BookingDetails bookingDetails;
@@ -29,14 +32,14 @@ public class RoomDetails {
     public RoomDetails() {
     }
 
-    public RoomDetails(Hotel hotel, String room_no, String room_type, double rate_per_day, boolean isAvailable, String photo, BookingDetails bookingDetails) {
+    public RoomDetails(Hotel hotel, String room_no, String room_type, double rate_per_day, boolean isAvailable, String photo) {
         this.hotel = hotel;
         this.room_no = room_no;
         this.room_type = room_type;
         this.rate_per_day = rate_per_day;
         this.isAvailable = isAvailable;
         this.photo = photo;
-        this.bookingDetails = bookingDetails;
+        this.bookingDetails = null;
     }
 
     public int getRoom_id() {
