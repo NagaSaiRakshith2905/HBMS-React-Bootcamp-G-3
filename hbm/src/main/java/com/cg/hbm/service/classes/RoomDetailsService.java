@@ -2,6 +2,8 @@ package com.cg.hbm.service.classes;
 
 import com.cg.hbm.entities.Hotel;
 import com.cg.hbm.entities.RoomDetails;
+import com.cg.hbm.exception_handler.HotelNotFoundException;
+import com.cg.hbm.exception_handler.RoomDetailsNotFoundException;
 import com.cg.hbm.pojo.RoomDetailsPojo;
 import com.cg.hbm.pojo.RoomDetailsUpdatePojo;
 import com.cg.hbm.repository.HotelRepository;
@@ -30,7 +32,7 @@ public class RoomDetailsService implements IRoomDetailsService {
 
         Optional<Hotel> hotel1 = hotelRepository.findById(roomDetailsPojo.getHotel_id());
         if (hotel1.isEmpty())
-            throw new IllegalStateException("Hotel not found");
+            throw new HotelNotFoundException("Hotel not found");
 
         RoomDetails roomDetails = new RoomDetails(hotel1.get(), roomDetailsPojo.getRoom_no(), roomDetailsPojo.getRoom_type(), roomDetailsPojo.getRate_per_day(), roomDetailsPojo.isAvailable(), roomDetailsPojo.getPhoto());
 
@@ -42,7 +44,7 @@ public class RoomDetailsService implements IRoomDetailsService {
         Optional<RoomDetails> roomDetails = roomDetailsRepository.findbyId(roomDetailsUpdatePojo.getRoom_id());
 
         if (roomDetails.isEmpty()) {
-            throw new IllegalStateException("Room with id " + roomDetailsUpdatePojo.getRoom_id() + " does not Exist");
+            throw new RoomDetailsNotFoundException("Room with id " + roomDetailsUpdatePojo.getRoom_id() + " does not Exist");
         }
         if (roomDetailsUpdatePojo.getRoom_no() != null && roomDetailsUpdatePojo.getRoom_no().length() > 0 && !Objects.equals(roomDetails.get().getRoom_no(), roomDetailsUpdatePojo.getRoom_no())) {
             roomDetails.get().setRoom_no(roomDetailsUpdatePojo.getRoom_no());
@@ -63,7 +65,7 @@ public class RoomDetailsService implements IRoomDetailsService {
     public void removeRoomDetails(int roomDetails_id) {
         Optional<RoomDetails> optionalRoomDetails = roomDetailsRepository.findById(roomDetails_id);
         if (optionalRoomDetails.isEmpty())
-            throw new IllegalStateException("Hotel with id:" + roomDetails_id + " not found ");
+            throw new HotelNotFoundException("Hotel with id:" + roomDetails_id + " not found ");
         roomDetailsRepository.deleteById(roomDetails_id);
     }
 
@@ -76,7 +78,7 @@ public class RoomDetailsService implements IRoomDetailsService {
     public RoomDetails showRoomDetails(int roomDetails_id) {
         Optional<RoomDetails> optionalRoomDetails = roomDetailsRepository.findById(roomDetails_id);
         if (optionalRoomDetails.isEmpty())
-            throw new IllegalStateException("Hotel with id:" + roomDetails_id + " not found ");
+            throw new HotelNotFoundException("Hotel with id:" + roomDetails_id + " not found ");
         System.out.println(optionalRoomDetails.get().getHotel().getHotel_id());
         return optionalRoomDetails.get();
     }

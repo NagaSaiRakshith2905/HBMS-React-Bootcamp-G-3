@@ -4,6 +4,7 @@ import com.cg.hbm.entities.BookingDetails;
 import com.cg.hbm.entities.Hotel;
 import com.cg.hbm.entities.RoomDetails;
 import com.cg.hbm.entities.UserDetails;
+import com.cg.hbm.exception_handler.BookingDetailsNotFoundException;
 import com.cg.hbm.exception_handler.HotelNotFoundException;
 import com.cg.hbm.exception_handler.RoomDetailsNotFoundException;
 import com.cg.hbm.exception_handler.UserNotFoundException;
@@ -64,7 +65,7 @@ public class BookingDetailsService implements IBookingDetailsService {
     public void removeBookingDetails(int id) {
         Optional<BookingDetails> bookingDetails = bookingDetailsRepository.findById(id);
         if (bookingDetails.isEmpty())
-            throw new IllegalStateException("booking details not found");
+            throw new BookingDetailsNotFoundException("booking details not found");
         List<RoomDetails> roomDetails = bookingDetails.get().getRoomDetails();
         for (RoomDetails room : roomDetails) {
             Optional<RoomDetails> optional = roomDetailsRepository.findById(room.getRoom_id());
@@ -82,7 +83,7 @@ public class BookingDetailsService implements IBookingDetailsService {
     public BookingDetails showBookingDetails(int id) {
         Optional<BookingDetails> bookingDetails = bookingDetailsRepository.findById(id);
         if (bookingDetails.isEmpty())
-            throw new IllegalStateException("booking details not found of ID:" + id);
+            throw new BookingDetailsNotFoundException("booking details not found of ID:" + id);
         return bookingDetails.get();
     }
 

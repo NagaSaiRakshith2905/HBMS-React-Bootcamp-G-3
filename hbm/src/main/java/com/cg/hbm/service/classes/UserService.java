@@ -1,6 +1,7 @@
 package com.cg.hbm.service.classes;
 
 import com.cg.hbm.entities.UserDetails;
+import com.cg.hbm.exception_handler.UserNotFoundException;
 import com.cg.hbm.pojo.UserUpdatePojo;
 import com.cg.hbm.repository.UserRepository;
 import com.cg.hbm.service.interfaces.IUserService;
@@ -27,9 +28,9 @@ public class UserService implements IUserService {
             if (userName.get().getPassword().equals(Password)) {
                 return userName.get();
             } else
-                throw new IllegalStateException("Please check username and password");
+                throw new UserNotFoundException("Please check username and password");
         } else
-            throw new IllegalStateException("User doesn't exists");
+            throw new UserNotFoundException("User doesn't exists");
     }
 
     @Override
@@ -45,7 +46,7 @@ public class UserService implements IUserService {
         Optional<UserDetails> user = userRepository.findById(userUpdatePojo.getUser_id());
 
         if (user.isEmpty()) {
-            throw new IllegalStateException("User with id " + userUpdatePojo.getUser_id() + " does not Exist");
+            throw new UserNotFoundException("User with id " + userUpdatePojo.getUser_id() + " does not Exist");
         }
 
         if (userUpdatePojo.getAddress() != null && userUpdatePojo.getAddress().length() > 0 && !Objects.equals(user.get().getAddress(), userUpdatePojo.getAddress())) {
@@ -81,7 +82,7 @@ public class UserService implements IUserService {
     public void removeUser(int id) {
         Optional<UserDetails> optionalUser = userRepository.findById(id);
         if (optionalUser.isEmpty())
-            throw new IllegalStateException("User with id:" + id + " not found ");
+            throw new UserNotFoundException("User with id:" + id + " not found ");
         userRepository.deleteById(id);
     }
 
@@ -95,7 +96,7 @@ public class UserService implements IUserService {
     public UserDetails showUser(int id) {
         Optional<UserDetails> optionalUser = userRepository.findById(id);
         if (optionalUser.isEmpty())
-            throw new IllegalStateException("User with id:" + id + " not found ");
+            throw new UserNotFoundException("User with id:" + id + " not found ");
         return optionalUser.get();
     }
 }

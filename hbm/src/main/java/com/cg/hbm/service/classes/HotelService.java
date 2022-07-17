@@ -1,6 +1,7 @@
 package com.cg.hbm.service.classes;
 
 import com.cg.hbm.entities.Hotel;
+import com.cg.hbm.exception_handler.HotelNotFoundException;
 import com.cg.hbm.pojo.HotelUpdatePojo;
 import com.cg.hbm.repository.HotelRepository;
 import com.cg.hbm.service.interfaces.IHotelService;
@@ -27,7 +28,7 @@ public class HotelService implements IHotelService {
         Optional<Hotel> hotel = hotelRepository.findById(hotelUpdatePojo.getHotel_id());
 
         if (hotel.isEmpty()) {
-            throw new IllegalStateException("Hotel with id " + hotelUpdatePojo.getHotel_id() + " does not Exist");
+            throw new HotelNotFoundException("Hotel with id " + hotelUpdatePojo.getHotel_id() + " does not Exist");
         }
 
 
@@ -74,7 +75,7 @@ public class HotelService implements IHotelService {
     public void removeHotel(int id) {
         Optional<Hotel> optionalHotel = hotelRepository.findById(id);
         if(optionalHotel.isEmpty())
-            throw new IllegalStateException("Hotel with id:"+ id+" not found ");
+            throw new HotelNotFoundException("Hotel with id:"+ id+" not found ");
         hotelRepository.deleteById(id);
     }
     @Override
@@ -85,7 +86,7 @@ public class HotelService implements IHotelService {
     public Hotel showHotel(int id) {
         Optional<Hotel> optionalHotel = hotelRepository.findById(id);
         if(optionalHotel.isEmpty())
-            throw new IllegalStateException("Hotel with id:"+ id+" not found ");
+            throw new HotelNotFoundException("Hotel with id:"+ id+" not found ");
         return optionalHotel.get();
     }
 }

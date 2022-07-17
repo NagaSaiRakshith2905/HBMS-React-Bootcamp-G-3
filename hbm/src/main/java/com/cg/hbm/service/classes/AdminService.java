@@ -1,6 +1,7 @@
 package com.cg.hbm.service.classes;
 
 import com.cg.hbm.entities.Admin;
+import com.cg.hbm.exception_handler.UserNotFoundException;
 import com.cg.hbm.repository.AdminRepository;
 import com.cg.hbm.service.interfaces.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +28,10 @@ public class AdminService implements IAdminService {
                 return adminName.get();
             }
             else
-                throw new IllegalStateException("Please check username and password");
+                throw new UserNotFoundException("Incorrect Password");
         }
         else
-            throw new IllegalStateException("Admin doesn't exists");
+            throw new UserNotFoundException("Admin doesn't exists");
     }
 
     @Override
