@@ -23,7 +23,6 @@ public class Transactions {
 
     public Transactions(double amount) {
         this.amount = amount;
-
     }
 
     public String getTransaction_date() {

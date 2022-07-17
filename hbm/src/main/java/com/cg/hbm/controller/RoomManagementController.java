@@ -2,6 +2,7 @@ package com.cg.hbm.controller;
 
 import com.cg.hbm.entities.RoomDetails;
 import com.cg.hbm.pojo.RoomDetailsPojo;
+import com.cg.hbm.pojo.RoomDetailsUpdatePojo;
 import com.cg.hbm.service.classes.RoomDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,12 +34,12 @@ public class RoomManagementController {
         return service.showAllRoomDetails();
     }
 
-    @DeleteMapping("remove_room_details")
+    @DeleteMapping("remove_room_details/")
     public void removeRoomDetails(@RequestParam("roomDetails_id") int roomDetails_id) {
         service.removeRoomDetails(roomDetails_id);
     }
-    @PutMapping("update_room_details")
-    public RoomDetails updateRoomDetails(@RequestBody RoomDetailsPojo roomDetailsPojo) {
-        return service.updateRoomDetails(roomDetailsPojo);
+    @PutMapping("update_room_details/")
+    public RoomDetails updateRoomDetails(@RequestBody RoomDetailsUpdatePojo roomDetailsUpdatePojo) {
+        return service.updateRoomDetails(roomDetailsUpdatePojo);
     }
 }

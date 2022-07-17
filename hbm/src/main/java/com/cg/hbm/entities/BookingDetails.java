@@ -26,7 +26,6 @@ public class BookingDetails {
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "bookingDetails",cascade = CascadeType.ALL)
     private List<RoomDetails> roomDetails = new ArrayList<>();
 
@@ -34,25 +33,23 @@ public class BookingDetails {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserDetails user;
-
-    @JsonIgnore
+@JsonIgnore
     @OneToMany(mappedBy = "bookingDetails",cascade = CascadeType.ALL)
     private List<Payments> payments = new ArrayList<>();
 
     public BookingDetails() {
     }
 
-    public BookingDetails(Date booked_from, Date booked_to, int no_of_adults, int no_of_children, double amount, Hotel hotel, List<RoomDetails> roomDetails, UserDetails user, List<Payments> payments) {
+    public BookingDetails(Date booked_from, Date booked_to, int no_of_adults, int no_of_children, double amount, Hotel hotel, UserDetails user) {
         this.booked_from = booked_from;
         this.booked_to = booked_to;
         this.no_of_adults = no_of_adults;
         this.no_of_children = no_of_children;
         this.amount = amount;
         this.hotel = hotel;
-        this.roomDetails = roomDetails;
         this.user = user;
-        this.payments = payments;
     }
+
 
     public int getBooking_id() {
         return booking_id;

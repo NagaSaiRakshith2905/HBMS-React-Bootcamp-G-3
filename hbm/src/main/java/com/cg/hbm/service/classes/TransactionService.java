@@ -15,13 +15,11 @@ import java.time.LocalDate;
 public class TransactionService implements ITransactionService {
     @Autowired
     private TransactionRepository repository;
+
     @Override
     public Transactions addTransaction(Transactions transaction) {
-       String date = LocalDate.now().toString();
-       transaction.setTransaction_date(date);
-
-
-
+        String date = LocalDate.now().toString();
+        transaction.setTransaction_date(date);
         return repository.save(transaction);
     }
 }

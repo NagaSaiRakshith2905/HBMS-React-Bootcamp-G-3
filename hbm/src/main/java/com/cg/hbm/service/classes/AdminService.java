@@ -14,27 +14,23 @@ import java.util.Optional;
 @Transactional
 public class AdminService implements IAdminService {
 
-    private AdminRepository adminRepository;
-
     @Autowired
-    public AdminService(AdminRepository adminRepository) {
-        this.adminRepository = adminRepository;
-    }
+    private AdminRepository adminRepository;
 
     @Override
     public Admin signIn(String adminUsername, String adminPassword) {
 
         Admin admin = adminRepository.findByAdmin_name(adminUsername);
         Optional<Admin> adminName = Optional.of(admin);
-       if (adminName.isPresent()){
-           if(adminName.get().getPassword().equals(adminPassword)){
-               return adminName.get();
-           }
-           else
-               throw new IllegalStateException("Please check username and password");
-       }
-       else
-           throw new IllegalStateException("Admin doesn't exists");
+        if (adminName.isPresent()){
+            if(adminName.get().getPassword().equals(adminPassword)){
+                return adminName.get();
+            }
+            else
+                throw new IllegalStateException("Please check username and password");
+        }
+        else
+            throw new IllegalStateException("Admin doesn't exists");
     }
 
     @Override

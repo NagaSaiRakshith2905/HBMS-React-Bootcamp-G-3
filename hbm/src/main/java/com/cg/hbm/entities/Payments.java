@@ -1,5 +1,7 @@
 package com.cg.hbm.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -10,6 +12,7 @@ public class Payments {
     @GeneratedValue(strategy = IDENTITY)
     private int payment_id;
 
+//    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="booking_id")
     private BookingDetails bookingDetails;

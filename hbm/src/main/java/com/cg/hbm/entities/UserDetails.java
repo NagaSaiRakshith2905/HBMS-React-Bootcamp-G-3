@@ -8,7 +8,6 @@ import java.util.List;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
-
 public class UserDetails {
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -26,14 +25,13 @@ public class UserDetails {
     public UserDetails() {
     }
 
-    public UserDetails(String user_name, String email, String password, String role, String mobile, String address, List<BookingDetails> bookingDetails) {
+    public UserDetails(String user_name, String email, String password, String mobile, String address) {
         this.user_name = user_name;
         this.email = email;
         this.password = password;
-        this.role = role;
+        this.role = "user";
         this.mobile = mobile;
         this.address = address;
-        this.bookingDetails = bookingDetails;
     }
 
     public int getUser_id() {

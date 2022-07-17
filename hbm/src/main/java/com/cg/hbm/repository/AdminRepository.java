@@ -1,7 +1,6 @@
 package com.cg.hbm.repository;
 
 import com.cg.hbm.entities.Admin;
-import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

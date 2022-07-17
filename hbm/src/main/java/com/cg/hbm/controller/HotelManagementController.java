@@ -1,6 +1,7 @@
 package com.cg.hbm.controller;
 
 import com.cg.hbm.entities.Hotel;
+import com.cg.hbm.pojo.HotelUpdatePojo;
 import com.cg.hbm.service.classes.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -32,5 +33,11 @@ public class HotelManagementController {
     @DeleteMapping("remove_hotel")
     public void removeHotel(@RequestParam("hotel_id") int id) {
         hotelService.removeHotel(id);
+    }
+
+    @PutMapping("update_hotel")
+    public Hotel updateHotel(@RequestBody HotelUpdatePojo hotelUpdatePojo) {
+
+        return hotelService.updateHotel(hotelUpdatePojo);
     }
 }

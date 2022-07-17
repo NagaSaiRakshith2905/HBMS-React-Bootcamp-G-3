@@ -21,13 +21,13 @@ public class LoginController {
     private UserService userService;
 
 
-    @PostMapping(path = "adminLogin")
+    @PostMapping(path = "admin_login/")
     public Admin adminLogin(@RequestParam("admin_name") String adminUsername,
                             @RequestParam("password") String adminPassword){
         return adminService.signIn(adminUsername, adminPassword);
     }
 
-    @PostMapping(path = "userLogin")
+    @PostMapping(path = "user_login/")
     public UserDetails userLogin(@RequestParam("user_name") String Username,
                                  @RequestParam("password") String Password){
         return userService.loginUser(Username, Password);
