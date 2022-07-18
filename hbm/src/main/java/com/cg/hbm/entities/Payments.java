@@ -12,11 +12,12 @@ public class Payments {
     @GeneratedValue(strategy = IDENTITY)
     private int payment_id;
 
-//    @JsonIgnore
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="booking_id")
     private BookingDetails bookingDetails;
 
+    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "transaction_id")
     private Transactions transactions;

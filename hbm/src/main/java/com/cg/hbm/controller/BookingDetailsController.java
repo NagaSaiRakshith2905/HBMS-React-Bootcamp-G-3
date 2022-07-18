@@ -2,6 +2,7 @@ package com.cg.hbm.controller;
 
 import com.cg.hbm.entities.BookingDetails;
 import com.cg.hbm.pojo.BookingDetailsPojo;
+import com.cg.hbm.pojo.BookingDetailsUpdatePojo;
 import com.cg.hbm.service.classes.BookingDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,7 @@ public class BookingDetailsController {
     public BookingDetails addBookingDetails(BookingDetailsPojo bookingDetailsPojo) {
         return bookingDetailsService.addBookingDetails(bookingDetailsPojo);
     }
+
     @GetMapping("view_booking_details/")
     public BookingDetails showBookingDetails(@RequestParam("booking_id") int id) {
         return bookingDetailsService.showBookingDetails(id);
@@ -31,5 +33,10 @@ public class BookingDetailsController {
     @DeleteMapping("remove_booking_details/")
     public void removeBookingDetails(@RequestParam("booking_id") int id) {
         bookingDetailsService.removeBookingDetails(id);
+    }
+
+    @PutMapping("update_booking_details/")
+    public BookingDetails updateBookingDetails(BookingDetailsUpdatePojo bookingDetailsUpdatePojo) {
+        return bookingDetailsService.updateBookingDetails(bookingDetailsUpdatePojo);
     }
 }

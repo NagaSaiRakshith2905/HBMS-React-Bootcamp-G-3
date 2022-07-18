@@ -1,17 +1,23 @@
 package com.cg.hbm.pojo;
 
 import java.sql.Date;
-import java.util.List;
 
-public class BookingDetailsPojo {
+public class BookingDetailsUpdatePojo {
+
+    private int booking_id;
     private Date booked_from;
     private Date booked_to;
     private int no_of_adults;
     private int no_of_children;
     private double amount;
-    private int hotel_id;//
-    private List<Integer> room_id;//
-    private int user_id;//
+
+    public int getBooking_id() {
+        return booking_id;
+    }
+
+    public void setBooking_id(int booking_id) {
+        this.booking_id = booking_id;
+    }
 
     public Date getBooked_from() {
         return booked_from;
@@ -51,29 +57,5 @@ public class BookingDetailsPojo {
 
     public void setAmount(double amount) {
         this.amount = amount;
-    }
-
-    public int getHotel_id() {
-        return hotel_id;
-    }
-
-    public void setHotel_id(int hotel_id) {
-        this.hotel_id = hotel_id;
-    }
-
-    public List<Integer> getRoom_id() {
-        return room_id;
-    }
-
-    public void setRoom_id(List<Integer> room_id) {
-        this.room_id = room_id;
-    }
-
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
     }
 }
