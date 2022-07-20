@@ -7,7 +7,7 @@ import com.cg.hbm.pojo.BookingDetailsUpdatePojo;
 import java.util.List;
 
 public interface IBookingDetailsService {
-    public BookingDetails addBookingDetails(BookingDetailsPojo bookingDetailsPojo);
+    public BookingDetails addBookingDetails(BookingDetails bookingDetails);
     public BookingDetails updateBookingDetails(BookingDetailsUpdatePojo bookingDetailsUpdatePojo);
     public void removeBookingDetails(int id);
     public List<BookingDetails> showAllBookingDetails();

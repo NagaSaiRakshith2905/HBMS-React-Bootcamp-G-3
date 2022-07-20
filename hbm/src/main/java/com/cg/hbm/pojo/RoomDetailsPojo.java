@@ -1,7 +1,7 @@
 package com.cg.hbm.pojo;
 
 public class RoomDetailsPojo {
-    private int room_id;
+//    private int room_id;
     private String room_no;
     private String room_type;
     private double rate_per_day;
@@ -9,13 +9,13 @@ public class RoomDetailsPojo {
     private String photo;
     private int hotel_id;
 
-    public int getRoom_id() {
-        return room_id;
-    }
-
-    public void setRoom_id(int room_id) {
-        this.room_id = room_id;
-    }
+//    public int getRoom_id() {
+//        return room_id;
+//    }
+//
+//    public void setRoom_id(int room_id) {
+//        this.room_id = room_id;
+//    }
 
     public String getRoom_no() {
         return room_no;

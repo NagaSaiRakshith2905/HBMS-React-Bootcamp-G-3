@@ -32,30 +32,12 @@ public class BookingDetailsService implements IBookingDetailsService {
     private BookingDetailsRepository bookingDetailsRepository;
     @Autowired
     private RoomDetailsRepository roomDetailsRepository;
-    @Autowired
-    private HotelRepository hotelRepository;
-    @Autowired
-    private UserRepository userRepository;
+
 
 
     @Override
-    public BookingDetails addBookingDetails(BookingDetailsPojo bookingDetailsPojo) {
-        Optional<Hotel> hotel = hotelRepository.findById(bookingDetailsPojo.getHotel_id());
-        if (hotel.isEmpty())
-            throw new HotelNotFoundException("Hotel not found");
-        Optional<UserDetails> user = userRepository.findById(bookingDetailsPojo.getUser_id());
-        if (user.isEmpty())
-            throw new UserNotFoundException("User not found");
-        BookingDetails bookingDetails = new BookingDetails(bookingDetailsPojo.getBooked_from(), bookingDetailsPojo.getBooked_to(), bookingDetailsPojo.getNo_of_adults(), bookingDetailsPojo.getNo_of_children(), bookingDetailsPojo.getAmount(), hotel.get(), user.get());
-        BookingDetails details = bookingDetailsRepository.save(bookingDetails);
-        for (int id : bookingDetailsPojo.getRoom_id()) {
-            Optional<RoomDetails> roomDetails = roomDetailsRepository.findById(id);
-            if (roomDetails.isEmpty())
-                throw new RoomDetailsNotFoundException("Room not found");
-            roomDetails.get().setBookingDetails(details);
-            roomDetails.get().setAvailable(false);
-        }
-        return details;
+    public BookingDetails addBookingDetails(BookingDetails bookingDetails) {
+        return    bookingDetailsRepository.save(bookingDetails);
     }
 
     @Override

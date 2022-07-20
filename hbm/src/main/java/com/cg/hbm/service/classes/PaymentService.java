@@ -24,16 +24,17 @@ public class PaymentService implements IPaymentService {
     private PaymentRepository paymentRepository;
 
     @Override
-    public Payments addPayment(Transactions transactions, BookingDetails bookingDetails) {
-        Payments payments = new Payments(bookingDetails, transactions);
+    public Payments addPayment(Payments payments) {
+
         return paymentRepository.save(payments);
     }
 
     @Override
     public PaymentPojo viewPayment(int payment_id) {
+
         Optional<Payments> optionalPayments = paymentRepository.findById(payment_id);
         if (optionalPayments.isEmpty())
-            throw new BookingDetailsNotFoundException("Payment not found of ID:"+payment_id);
+            throw new BookingDetailsNotFoundException("Payment not found of ID:" + payment_id);
         PaymentPojo paymentPojo = new PaymentPojo();
         paymentPojo.setPayment_id(optionalPayments.get().getPayment_id());
         paymentPojo.setBooking_id(optionalPayments.get().getBookingDetails().getBooking_id());
@@ -47,7 +48,7 @@ public class PaymentService implements IPaymentService {
     public List<PaymentPojo> viewAllPayment() {
         List<Payments> paymentsList = paymentRepository.findAll();
         List<PaymentPojo> paymentPojoList = new ArrayList<>();
-        for (Payments payments : paymentsList){
+        for (Payments payments : paymentsList) {
             PaymentPojo paymentPojo = new PaymentPojo();
             paymentPojo.setPayment_id(payments.getPayment_id());
             paymentPojo.setBooking_id(payments.getBookingDetails().getBooking_id());

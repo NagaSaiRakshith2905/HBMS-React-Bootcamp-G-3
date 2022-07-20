@@ -10,7 +10,7 @@ import java.util.List;
 
 
 public interface IPaymentService {
-    public Payments addPayment(Transactions transactions, BookingDetails bookingDetails);
+    public Payments addPayment(Payments payments);
 
     PaymentPojo viewPayment(int payment_id);
     List<PaymentPojo> viewAllPayment();

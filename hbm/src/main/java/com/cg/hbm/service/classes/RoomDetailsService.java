@@ -23,19 +23,10 @@ public class RoomDetailsService implements IRoomDetailsService {
 
     @Autowired
     RoomDetailsRepository roomDetailsRepository;
-    @Autowired
-    HotelRepository hotelRepository;
 
 
     @Override
-    public RoomDetails addRoomDetails(RoomDetailsPojo roomDetailsPojo) {
-
-        Optional<Hotel> hotel1 = hotelRepository.findById(roomDetailsPojo.getHotel_id());
-        if (hotel1.isEmpty())
-            throw new HotelNotFoundException("Hotel not found");
-
-        RoomDetails roomDetails = new RoomDetails(hotel1.get(), roomDetailsPojo.getRoom_no(), roomDetailsPojo.getRoom_type(), roomDetailsPojo.getRate_per_day(), roomDetailsPojo.isAvailable(), roomDetailsPojo.getPhoto());
-
+    public RoomDetails addRoomDetails(RoomDetails roomDetails) {
         return roomDetailsRepository.save(roomDetails);
     }
 
@@ -78,8 +69,7 @@ public class RoomDetailsService implements IRoomDetailsService {
     public RoomDetails showRoomDetails(int roomDetails_id) {
         Optional<RoomDetails> optionalRoomDetails = roomDetailsRepository.findById(roomDetails_id);
         if (optionalRoomDetails.isEmpty())
-            throw new HotelNotFoundException("Hotel with id:" + roomDetails_id + " not found ");
-        System.out.println(optionalRoomDetails.get().getHotel().getHotel_id());
+            throw new RoomDetailsNotFoundException("Room with id:" + roomDetails_id + " not found ");
         return optionalRoomDetails.get();
     }
 }

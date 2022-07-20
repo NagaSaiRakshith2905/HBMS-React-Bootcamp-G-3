@@ -31,7 +31,8 @@ public class PaymentManagementController {
     public Payments makeTransaction(@RequestBody TransactionPojo transactionPojo) {
         Transactions transaction = transactionService.addTransaction(new Transactions(transactionPojo.getAmount()));
         BookingDetails bookingDetails = bookingDetailsService.showBookingDetails(transactionPojo.getBooking_id());
-        return paymentService.addPayment(transaction, bookingDetails);
+        Payments payments = new Payments(bookingDetails, transaction);
+        return paymentService.addPayment(payments);
     }
 
     @GetMapping("view_payment/")

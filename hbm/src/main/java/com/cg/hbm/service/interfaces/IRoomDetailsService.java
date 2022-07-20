@@ -7,7 +7,7 @@ import com.cg.hbm.pojo.RoomDetailsUpdatePojo;
 import java.util.List;
 
 public interface IRoomDetailsService {
-    public RoomDetails addRoomDetails(RoomDetailsPojo roomDetails);
+    public RoomDetails addRoomDetails(RoomDetails roomDetails);
     public RoomDetails updateRoomDetails(RoomDetailsUpdatePojo roomDetailsUpdatePojo);
     public void removeRoomDetails(int roomDetails_id);
     public List<RoomDetails> showAllRoomDetails();
