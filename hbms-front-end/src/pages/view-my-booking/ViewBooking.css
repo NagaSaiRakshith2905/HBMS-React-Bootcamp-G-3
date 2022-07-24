@@ -1,0 +1,30 @@
+.view-booking {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-primary);
+}
+.view-booking .container {
+  width: 100%;
+  max-width: 1024px;
+  margin-top: 32px;
+  margin-bottom: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.table-cont {
+  width: 100%;
+  background-color: #f2f2f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.table-cont .table {
+  width: 100%;
+  max-width: 1024px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
