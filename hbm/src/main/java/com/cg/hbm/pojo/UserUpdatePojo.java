@@ -8,6 +8,7 @@ public class UserUpdatePojo {
     private String password;
     private String role;
     private String mobile;
+    private String address;
 
     public int getUser_id() {
         return user_id;
@@ -65,7 +66,6 @@ public class UserUpdatePojo {
         this.address = address;
     }
 
-    private String address;
 
 
 }

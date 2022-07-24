@@ -16,11 +16,14 @@ import com.cg.hbm.service.classes.BookingDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "api/booking/")
+@CrossOrigin(origins = "*")
+@Transactional
 public class BookingDetailsController {
     @Autowired
     private BookingDetailsService bookingDetailsService;
@@ -32,6 +35,7 @@ public class BookingDetailsController {
     private RoomDetailsRepository roomDetailsRepository;
 
     @PostMapping("add_booking_details/")
+    @Transactional
     public BookingDetails addBookingDetails(@RequestBody BookingDetailsPojo bookingDetailsPojo) {
         Optional<Hotel> hotel = hotelRepository.findById(bookingDetailsPojo.getHotel_id());
         if (hotel.isEmpty())
@@ -43,13 +47,17 @@ public class BookingDetailsController {
 
         BookingDetails details = bookingDetailsService.addBookingDetails(bookingDetails);
 
+        System.out.println(bookingDetailsPojo.getRoom_id());
         for (int id : bookingDetailsPojo.getRoom_id()) {
             Optional<RoomDetails> roomDetails = roomDetailsRepository.findById(id);
+            System.out.println(roomDetails.get());
             if (roomDetails.isEmpty())
                 throw new RoomDetailsNotFoundException("Room not found");
             roomDetails.get().setBookingDetails(details);
             roomDetails.get().setAvailable(false);
+            System.out.println(roomDetails.get());
         }
+        System.out.println(details);
         return details;
     }
 

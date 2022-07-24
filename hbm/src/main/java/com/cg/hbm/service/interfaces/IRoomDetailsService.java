@@ -1,7 +1,6 @@
 package com.cg.hbm.service.interfaces;
 
 import com.cg.hbm.entities.RoomDetails;
-import com.cg.hbm.pojo.RoomDetailsPojo;
 import com.cg.hbm.pojo.RoomDetailsUpdatePojo;
 
 import java.util.List;

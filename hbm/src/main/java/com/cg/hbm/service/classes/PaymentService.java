@@ -1,11 +1,9 @@
 package com.cg.hbm.service.classes;
 
-import com.cg.hbm.entities.BookingDetails;
 import com.cg.hbm.entities.Payments;
-import com.cg.hbm.entities.Transactions;
 import com.cg.hbm.exception_handler.BookingDetailsNotFoundException;
+import com.cg.hbm.exception_handler.PaymentsNotFoundException;
 import com.cg.hbm.pojo.PaymentPojo;
-import com.cg.hbm.pojo.TransactionPojo;
 import com.cg.hbm.repository.PaymentRepository;
 import com.cg.hbm.service.interfaces.IPaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +32,7 @@ public class PaymentService implements IPaymentService {
 
         Optional<Payments> optionalPayments = paymentRepository.findById(payment_id);
         if (optionalPayments.isEmpty())
-            throw new BookingDetailsNotFoundException("Payment not found of ID:" + payment_id);
+            throw new PaymentsNotFoundException("Payment not found of ID:" + payment_id);
         PaymentPojo paymentPojo = new PaymentPojo();
         paymentPojo.setPayment_id(optionalPayments.get().getPayment_id());
         paymentPojo.setBooking_id(optionalPayments.get().getBookingDetails().getBooking_id());

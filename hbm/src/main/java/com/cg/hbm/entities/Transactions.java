@@ -4,9 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import java.sql.DatabaseMetaData;
-import java.sql.Date;
-
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity

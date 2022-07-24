@@ -22,20 +22,21 @@ public class UserService implements IUserService {
 
     @Override
     public UserDetails loginUser(String Username, String Password) {
-        UserDetails user = userRepository.findUser(Username);
-        Optional<UserDetails> userName = Optional.of(user);
-        if (userName.isPresent()) {
-            if (userName.get().getPassword().equals(Password)) {
-                return userName.get();
+        Optional<UserDetails> user = userRepository.findUser(Username);
+        if (user.isPresent()) {
+            if (user.get().getPassword().equals(Password)) {
+                return user.get();
             } else
-                throw new UserNotFoundException("Please check username and password");
+                throw new UserNotFoundException("Incorrect password");
         } else
-            throw new UserNotFoundException("User doesn't exists");
+            throw new UserNotFoundException("Username doesn't exists");
     }
 
     @Override
     public UserDetails addUser(UserDetails user) {
-
+        Optional<UserDetails> optional = userRepository.findUser(user.getUser_name());
+        if (optional.isPresent())
+            throw new UserNotFoundException("User with username:"+user.getUser_name()+"already exist");
         return userRepository.save(user);
     }
 

@@ -15,6 +15,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "api/room/")
+@CrossOrigin(origins = "*")
 public class RoomManagementController {
 
     private RoomDetailsService service;
@@ -26,7 +27,7 @@ public class RoomManagementController {
         this.service = service;
     }
 
-    @PostMapping("add")
+    @PostMapping("add_room/")
     public RoomDetails add_room(@RequestBody RoomDetailsPojo roomDetailsPojo) {
         Optional<Hotel> hotel1 = hotelRepository.findById(roomDetailsPojo.getHotel_id());
         if (hotel1.isEmpty())

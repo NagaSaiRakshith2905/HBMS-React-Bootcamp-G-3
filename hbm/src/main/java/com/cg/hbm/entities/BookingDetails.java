@@ -3,7 +3,6 @@ package com.cg.hbm.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,8 +32,9 @@ public class BookingDetails {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserDetails user;
-@JsonIgnore
-    @OneToMany(mappedBy = "bookingDetails",cascade = CascadeType.ALL)
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "bookingDetails", cascade = CascadeType.ALL)
     private List<Payments> payments = new ArrayList<>();
 
     public BookingDetails() {

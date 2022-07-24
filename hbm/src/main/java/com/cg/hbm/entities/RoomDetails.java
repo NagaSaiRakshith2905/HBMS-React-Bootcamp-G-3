@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
-import java.sql.Blob;
-
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
@@ -39,6 +37,17 @@ public class RoomDetails {
         this.rate_per_day = rate_per_day;
         this.isAvailable = isAvailable;
         this.photo = photo;
+        this.bookingDetails = null;
+    }
+
+    public RoomDetails(int room_id, String room_no, String room_type, double rate_per_day, boolean isAvailable, String photo, Hotel hotel) {
+        this.room_id = room_id;
+        this.room_no = room_no;
+        this.room_type = room_type;
+        this.rate_per_day = rate_per_day;
+        this.isAvailable = isAvailable;
+        this.photo = photo;
+        this.hotel = hotel;
         this.bookingDetails = null;
     }
 

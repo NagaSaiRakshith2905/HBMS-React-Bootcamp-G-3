@@ -1,12 +1,9 @@
 package com.cg.hbm.service.classes;
 
-import com.cg.hbm.entities.Hotel;
 import com.cg.hbm.entities.RoomDetails;
 import com.cg.hbm.exception_handler.HotelNotFoundException;
 import com.cg.hbm.exception_handler.RoomDetailsNotFoundException;
-import com.cg.hbm.pojo.RoomDetailsPojo;
 import com.cg.hbm.pojo.RoomDetailsUpdatePojo;
-import com.cg.hbm.repository.HotelRepository;
 import com.cg.hbm.repository.RoomDetailsRepository;
 import com.cg.hbm.service.interfaces.IRoomDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;

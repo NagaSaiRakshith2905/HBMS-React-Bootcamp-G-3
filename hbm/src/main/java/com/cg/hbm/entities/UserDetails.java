@@ -1,7 +1,6 @@
 package com.cg.hbm.entities;
 
 import javax.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +14,7 @@ public class UserDetails {
     private String user_name;
     private String email;
     private String password;
-    private String role;
+    private String role="user";
     private String mobile;
     private String address;
 

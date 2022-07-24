@@ -1,19 +1,11 @@
 package com.cg.hbm.service.classes;
 
 import com.cg.hbm.entities.BookingDetails;
-import com.cg.hbm.entities.Hotel;
 import com.cg.hbm.entities.RoomDetails;
-import com.cg.hbm.entities.UserDetails;
 import com.cg.hbm.exception_handler.BookingDetailsNotFoundException;
-import com.cg.hbm.exception_handler.HotelNotFoundException;
-import com.cg.hbm.exception_handler.RoomDetailsNotFoundException;
-import com.cg.hbm.exception_handler.UserNotFoundException;
-import com.cg.hbm.pojo.BookingDetailsPojo;
 import com.cg.hbm.pojo.BookingDetailsUpdatePojo;
 import com.cg.hbm.repository.BookingDetailsRepository;
-import com.cg.hbm.repository.HotelRepository;
 import com.cg.hbm.repository.RoomDetailsRepository;
-import com.cg.hbm.repository.UserRepository;
 import com.cg.hbm.service.interfaces.IBookingDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -78,11 +70,15 @@ public class BookingDetailsService implements IBookingDetailsService {
         if (bookingDetails.isEmpty())
             throw new BookingDetailsNotFoundException("booking details not found");
         List<RoomDetails> roomDetails = bookingDetails.get().getRoomDetails();
+        List<RoomDetails> saveRoomList = new ArrayList<>();
         for (RoomDetails room : roomDetails) {
             Optional<RoomDetails> optional = roomDetailsRepository.findById(room.getRoom_id());
             optional.get().setAvailable(true);
-        }
+            RoomDetails r_details = new RoomDetails(optional.get().getRoom_id(),optional.get().getRoom_no(),optional.get().getRoom_type(),optional.get().getRate_per_day(),optional.get().isAvailable(),optional.get().getPhoto(),optional.get().getHotel());
+            saveRoomList.add(r_details);
+        };
         bookingDetailsRepository.deleteById(id);
+        roomDetailsRepository.saveAll(saveRoomList);
     }
 
     @Override
