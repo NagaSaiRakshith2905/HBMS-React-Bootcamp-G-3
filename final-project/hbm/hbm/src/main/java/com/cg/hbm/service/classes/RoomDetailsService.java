@@ -45,7 +45,9 @@ public class RoomDetailsService implements IRoomDetailsService {
         }
         if (roomDetailsUpdatePojo.getRate_per_day() > 0 && roomDetails.get().getRate_per_day() != roomDetailsUpdatePojo.getRate_per_day()) {
             roomDetails.get().setRate_per_day(roomDetailsUpdatePojo.getRate_per_day());
+
         }
+        roomDetails.get().setAvailable(roomDetailsUpdatePojo.isAvailable());
         return roomDetails.get();
     }
 

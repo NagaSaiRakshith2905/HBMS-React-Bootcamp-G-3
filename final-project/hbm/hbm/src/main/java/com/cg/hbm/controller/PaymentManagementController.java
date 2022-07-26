@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/transaction/")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:3000/")
 public class PaymentManagementController {
 
     @Autowired

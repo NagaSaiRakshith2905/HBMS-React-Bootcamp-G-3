@@ -35,7 +35,7 @@ public class BookingDetailsService implements IBookingDetailsService {
     @Override
     public BookingDetails updateBookingDetails(BookingDetailsUpdatePojo bookingDetailsUpdatePojo) {
 
-        System.out.println(bookingDetailsUpdatePojo.getBooking_id());
+//        System.out.println(bookingDetailsUpdatePojo.getBooking_id());
         Optional<BookingDetails> bookingDetails = bookingDetailsRepository.findById(bookingDetailsUpdatePojo.getBooking_id());
         if (bookingDetails.isEmpty()) {
             throw new BookingDetailsNotFoundException("Booking with id " + bookingDetailsUpdatePojo.getBooking_id() + " does not Exist");

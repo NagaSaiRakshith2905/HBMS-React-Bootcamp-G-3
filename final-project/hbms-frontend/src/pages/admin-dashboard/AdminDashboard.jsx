@@ -136,31 +136,7 @@ const AdminDashboard = () => {
                 </Grid>
               </>
               {/* update */}
-              <>
-                <Grid item md={12}>
-                  -update
-                </Grid>
-                <Grid item md={2}>
-                  <Button
-                    fullWidth
-                    variant={"contained"}
-                    color={"warning"}
-                    onClick={(e) => navigate("/admin_dashboard/update_hotel")}
-                  >
-                    Hotel
-                  </Button>
-                </Grid>
-                <Grid item md={2}>
-                  <Button
-                    fullWidth
-                    variant={"contained"}
-                    color={"warning"}
-                    onClick={(e) => navigate("/admin_dashboard/update_room")}
-                  >
-                    Room
-                  </Button>
-                </Grid>
-              </>
+              
             </Grid>
           </div>
           <div className="dashboard-cont">

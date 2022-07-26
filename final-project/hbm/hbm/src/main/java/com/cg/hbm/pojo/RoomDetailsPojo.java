@@ -9,6 +9,7 @@ public class RoomDetailsPojo {
     private String photo;
     private int hotel_id;
 
+
 //    public int getRoom_id() {
 //        return room_id;
 //    }

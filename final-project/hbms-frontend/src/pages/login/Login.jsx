@@ -103,8 +103,8 @@ const Login = () => {
                 size="small"
                 sx={{ backgroundColor: "white" }}
                 variant="outlined"
-                error={formValidation.usernameError}
-                helperText={formValidation.usernameError}
+                error={formValidation.passwordError}
+                helperText={formValidation.passwordError}
                 type={"password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}

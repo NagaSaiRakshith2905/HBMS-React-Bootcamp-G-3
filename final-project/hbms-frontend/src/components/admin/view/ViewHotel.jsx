@@ -14,6 +14,7 @@ import {
   Button,
 } from "@mui/material";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
+import BorderColorRounded from "@mui/icons-material/BorderColorRounded";
 import { useNavigate } from "react-router-dom";
 
 const ViewHotel = () => {
@@ -54,7 +55,13 @@ const ViewHotel = () => {
               <TableCell align="left">Address</TableCell>
               <TableCell align="left">Description</TableCell>
               <TableCell align="left">email</TableCell>
+              <TableCell align="left"># Rooms</TableCell>
+              
+              
+              <TableCell align="center">Update Hotel</TableCell>
+
               <TableCell align="center">Delete-Hotel</TableCell>
+              
             </TableRow>
           </TableHead>
           <TableBody>
@@ -69,7 +76,20 @@ const ViewHotel = () => {
                 <TableCell align="left">{row.address}</TableCell>
                 <TableCell align="left">{row.description}</TableCell>
                 <TableCell align="left">{row.email}</TableCell>
-                <TableCell align="center">
+                <TableCell align="left">{row.roomDetailsList.length}</TableCell>
+                
+                  <TableCell align="center">
+                  <Button
+                    onClick={(e) => {
+                      localStorage.setItem("update-hotel", JSON.stringify(row));
+                      navigate("/admin_dashboard/update_hotel/" + row.hotel_id);
+                    }}
+                    color={"warning"}
+                  >
+                    <BorderColorRounded />
+                  </Button>
+                  </TableCell>
+                  <TableCell align="center">
                   <Button
                     color={"error"}
                     onClick={(e) => {
@@ -78,7 +98,9 @@ const ViewHotel = () => {
                   >
                     <DeleteRoundedIcon />
                   </Button>
-                </TableCell>
+                  </TableCell>
+                  
+                
               </TableRow>
             ))}
           </TableBody>

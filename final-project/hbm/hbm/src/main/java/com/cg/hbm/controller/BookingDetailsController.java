@@ -25,7 +25,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "api/booking/")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:3000/")
 @Transactional
 public class BookingDetailsController {
     @Autowired

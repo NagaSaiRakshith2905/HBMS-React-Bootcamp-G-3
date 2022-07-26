@@ -8,7 +8,9 @@ import { addUserAPI } from "../../Services/UserService";
 
 const Register = () => {
   const navigate = useNavigate();
-
+  const emailregex =
+  /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+  const mobileregex = /^[0]?[6789]\d{9}$/;
   const [userData, setUserData] = useState({
     user_name: "",
     password: "",
@@ -31,12 +33,17 @@ const Register = () => {
     if (!userData.email) {
       error["emailError"] = "email can't be empty";
     }
+    if(!userData.email.match(emailregex)){
+      error["emailError"] = "invalid email";
+
+    }
     if (!userData.mobile) {
       error["mobileError"] = "mobile number can't be empty";
     }
-    if (userData.mobile.length !== 10) {
+    if (!userData.mobile.match(mobileregex)) {
       error["mobileError"] = "invalid mobile number";
     }
+    
     if (!userData.address) {
       error["addressError"] = "address can't be empty";
     }
@@ -124,6 +131,7 @@ const Register = () => {
             <Grid item md={6}>
               <TextField
                 fullWidth
+                type={"number"}
                 label="mobile"
                 size="small"
                 variant="outlined"

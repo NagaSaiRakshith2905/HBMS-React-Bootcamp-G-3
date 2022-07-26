@@ -5,18 +5,19 @@ import { updateHotelAPI } from "../../../Services/HotelService";
 
 const UpdateHotel = () => {
   const navigate = useNavigate();
+  const data = JSON.parse(localStorage.getItem("update-hotel"));
 
   const [updatehotelData, setupdatehotelData] = useState({
-    hotel_id: "",
-    city: "",
-    hotel_name: "",
-    address: "",
-    description: "",
-    avg_rate_per_day: "",
-    email: "",
-    phone1: "",
-    phone2: "",
-    website: "",
+    hotel_id: data.hotel_id,
+    city: data.city,
+    hotel_name: data.hotel_name,
+    address: data.address,
+    description: data.description,
+    avg_rate_per_day: data.avg_rate_per_day,
+    email: data.email,
+    phone1: data.phone1,
+    phone2: data.phone2,
+    website: data.website,
   });
   const [formValidation, setFormValidation] = useState({});
 
@@ -92,6 +93,7 @@ const UpdateHotel = () => {
           <Grid item md={6}>
             <TextField
               fullWidth
+              disabled="true"
               label="Hotel ID"
               size="small"
               variant="outlined"

@@ -7,6 +7,14 @@ public class RoomDetailsUpdatePojo {
     private String room_type;
     private double rate_per_day;
     private String photo;
+    private boolean isAvailable;
+    public boolean isAvailable(){
+        return isAvailable;
+
+    }
+    public void setAvailable(boolean available){
+        isAvailable= available;
+    }
 
     public int getRoom_id() {
         return room_id;
