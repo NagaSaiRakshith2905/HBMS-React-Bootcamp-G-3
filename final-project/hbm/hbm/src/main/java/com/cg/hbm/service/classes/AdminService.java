@@ -21,8 +21,7 @@ public class AdminService implements IAdminService {
     @Override
     public Admin signIn(String adminUsername, String adminPassword) {
 
-        Admin admin = adminRepository.findByAdmin_name(adminUsername);
-        Optional<Admin> adminName = Optional.of(admin);
+        Optional<Admin> adminName = adminRepository.findByAdmin_name(adminUsername);
         if (adminName.isPresent()){
             if(adminName.get().getPassword().equals(adminPassword)){
                 return adminName.get();
@@ -34,8 +33,4 @@ public class AdminService implements IAdminService {
             throw new UserNotFoundException("Admin doesn't exists");
     }
 
-    @Override
-    public Admin signOut(Admin admin) {
-        return null;
-    }
 }

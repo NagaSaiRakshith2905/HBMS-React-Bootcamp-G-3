@@ -23,7 +23,6 @@ public class PaymentService implements IPaymentService {
 
     @Override
     public Payments addPayment(Payments payments) {
-
         return paymentRepository.save(payments);
     }
 

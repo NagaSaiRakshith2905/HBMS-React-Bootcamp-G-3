@@ -1,7 +1,6 @@
 package com.cg.hbm.pojo;
 
 public class RoomDetailsPojo {
-//    private int room_id;
     private String room_no;
     private String room_type;
     private double rate_per_day;

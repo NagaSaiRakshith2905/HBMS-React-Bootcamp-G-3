@@ -8,6 +8,7 @@ import PageNotFound from "../../components/page-not-found/PageNotFound";
 import { Button, Divider } from "@mui/material";
 import { viewHotelAPI } from "../../Services/HotelService";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
+
 const ViewHotel = () => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -96,7 +97,9 @@ const ViewHotel = () => {
                         <span>-Room No.: </span>
                         {room.room_no} <span>/ Room Type: </span>
                         {room.room_type} <span>/ Available: </span>
-                        {room.available ? "Yes" : "No"}
+                        {room.available ? "Yes" : "No"}{" "}
+                        <span>/ Rate-Day: </span>
+                        {room.rate_per_day}
                       </h5>
                     </div>
                   );

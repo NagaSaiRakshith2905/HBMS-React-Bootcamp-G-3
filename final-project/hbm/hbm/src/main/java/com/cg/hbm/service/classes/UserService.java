@@ -36,14 +36,13 @@ public class UserService implements IUserService {
     public UserDetails addUser(UserDetails user) {
         Optional<UserDetails> optional = userRepository.findUser(user.getUser_name());
         if (optional.isPresent())
-            throw new UserNotFoundException("User with username:"+user.getUser_name()+"already exist");
+            throw new UserNotFoundException("User with username: "+user.getUser_name()+" already exist");
         return userRepository.save(user);
     }
 
     @Override
     public UserDetails updateUser(UserUpdatePojo userUpdatePojo) {
 
-        System.out.println(userUpdatePojo.getUser_id());
         Optional<UserDetails> user = userRepository.findById(userUpdatePojo.getUser_id());
 
         if (user.isEmpty()) {

@@ -53,17 +53,13 @@ public class BookingDetailsController {
 
         BookingDetails details = bookingDetailsService.addBookingDetails(bookingDetails);
 
-        System.out.println(bookingDetailsPojo.getRoom_id());
         for (int id : bookingDetailsPojo.getRoom_id()) {
             Optional<RoomDetails> roomDetails = roomDetailsRepository.findById(id);
-            System.out.println(roomDetails.get());
             if (roomDetails.isEmpty())
                 throw new RoomDetailsNotFoundException("Room not found");
             roomDetails.get().setBookingDetails(details);
             roomDetails.get().setAvailable(false);
-            System.out.println(roomDetails.get());
         }
-        System.out.println(details);
         return details;
     }
 

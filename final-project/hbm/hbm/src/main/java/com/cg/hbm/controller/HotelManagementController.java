@@ -38,7 +38,6 @@ public class HotelManagementController {
 
     @PutMapping("update_hotel")
     public Hotel updateHotel(@RequestBody HotelUpdatePojo hotelUpdatePojo) {
-
         return hotelService.updateHotel(hotelUpdatePojo);
     }
 }
