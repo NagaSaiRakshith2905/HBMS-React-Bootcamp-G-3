@@ -14,6 +14,7 @@ import {
   Button,
 } from "@mui/material";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
+import BorderColorRounded from "@mui/icons-material/BorderColorRounded";
 import { useNavigate } from "react-router-dom";
 
 const ViewRoom = () => {
@@ -51,6 +52,7 @@ const ViewRoom = () => {
               <TableCell align="left">Room-Type</TableCell>
               <TableCell align="left">Rate-Per-Day</TableCell>
               <TableCell align="left">Available</TableCell>
+              <TableCell align="left">Update Room</TableCell>
               <TableCell align="center">Delete-Room</TableCell>
             </TableRow>
           </TableHead>
@@ -64,9 +66,21 @@ const ViewRoom = () => {
                 <TableCell align="left">{row.room_no}</TableCell>
                 <TableCell align="left">{row.room_type}</TableCell>
                 <TableCell align="left">{row.rate_per_day}</TableCell>
+                
                 <TableCell align="left">
                   {row.available ? "Yes" : "No"}
                 </TableCell>
+                <TableCell align="center">
+                  <Button
+                    onClick={(e) => {
+                      localStorage.setItem("update-room", JSON.stringify(row));
+                      navigate("/admin_dashboard/update_room/" + row.room_id);
+                    }}
+                    color={"warning"}
+                  >
+                    <BorderColorRounded />
+                  </Button>
+                  </TableCell>
                 <TableCell align="center">
                   <Button
                     color={"error"}

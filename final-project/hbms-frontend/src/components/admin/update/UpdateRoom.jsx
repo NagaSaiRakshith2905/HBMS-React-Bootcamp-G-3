@@ -5,13 +5,14 @@ import { updateRoomAPI } from "../../../Services/RoomManagementService";
 
 const UpdateRoom = () => {
   const navigate = useNavigate();
+  const data = JSON.parse(localStorage.getItem("update-room"));
   const [updateroomData, setupdateroomData] = useState({
-    room_id: "",
-    room_no: "",
-    room_type: "",
-    rate_per_day: "",
-    photo: "",
-    available: "",
+    room_id: data.room_id,
+    room_no: data.room_no,
+    room_type: data.room_type,
+    rate_per_day: data.rate_per_day,
+    photo: data.photo,
+    available: data.available,
   });
 
   const [formValidation, setFormValidation] = useState({});
@@ -44,6 +45,7 @@ const UpdateRoom = () => {
       await updateRoomAPI(updateroomData)
         .then((resp) => {
           if (resp.status === 200 || resp.status === 201) {
+            localStorage.removeItem("update-room");
             navigate("/admin_dashboard/view_room");
           }
         })
@@ -70,6 +72,7 @@ const UpdateRoom = () => {
           <Grid item md={6}>
             <TextField
               fullWidth
+              disabled="true"
               label="Room-ID"
               size="small"
               variant="outlined"

@@ -58,7 +58,7 @@ function App() {
             <Route path="add_room" element={<AddRoom />} />
 
             <Route path="update_hotel/:id" element={<UpdateHotel />} />
-            <Route path="update_room" element={<UpdateRoom />} />
+            <Route path="update_room/:id" element={<UpdateRoom />} />
 
             <Route path="view_user" element={<ViewUser />} />
             <Route path="view_hotel" element={<ViewHotel />} />

@@ -67,6 +67,7 @@ const UpdateHotel = () => {
       await updateHotelAPI(updatehotelData)
         .then((resp) => {
           if (resp.status === 200 || resp.status === 201) {
+            localStorage.removeItem("update-hotel");
             navigate("/admin_dashboard/view_hotel");
           }
         })
