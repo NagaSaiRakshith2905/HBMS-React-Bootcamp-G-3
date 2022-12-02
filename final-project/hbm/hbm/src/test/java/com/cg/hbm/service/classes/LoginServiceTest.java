@@ -59,7 +59,7 @@ public class LoginServiceTest {
         String password = "1234";
         admin.setPassword(password);
 
-        when(adminRepository.findByAdmin_name(user_name)).thenReturn(admin);
+        when(adminRepository.findByAdmin_name(user_name)).thenReturn(Optional.of(admin));
 
         Admin admin1 = adminService.signIn(user_name, password);
         assertThat(admin1.getPassword()).isEqualTo(password);
